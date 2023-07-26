@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>SanLeen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0;">
+  <meta name="color-scheme" content="dark light">
+  <style>
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .knows {
+      user-select: none;
+      text-transform: uppercase;
+      animation: blur 3s ease-out infinite;
+      text-shadow: 0px 0px 5px #fff, 0px 0px 7px #fff;
+    }
+
+    @keyframes blur {
+      from {
+        text-shadow: 0px 0px 10px #fff,
+          0px 0px 10px #fff,
+          0px 0px 25px #fff,
+          0px 0px 25px #fff,
+          0px 0px 25px #fff,
+          0px 0px 25px #fff,
+          0px 0px 25px #fff,
+          0px 0px 25px #fff,
+          0px 0px 50px #fff,
+          0px 0px 50px #fff,
+          0px 0px 50px #7B96B8,
+          0px 0px 150px #7B96B8,
+          0px 10px 100px #7B96B8,
+          0px 10px 100px #7B96B8,
+          0px 10px 100px #7B96B8,
+          0px 10px 100px #7B96B8,
+          0px -10px 100px #7B96B8,
+          0px -10px 100px #7B96B8;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="knows" ontouchstart="return false">即將發生</h1>
+  <script>
+    window.onload = function () {
+      document.addEventListener('touchstart', function (event) {
+        if (event.touches.length > 1) {
+          event.preventDefault();
+        }
+      });
+      var lastTouchEnd = 0;
+      document.addEventListener('touchend', function (event) {
+        var now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+          event.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
+      document.addEventListener('gesturestart', function (event) {
+        event.preventDefault();
+      });
+    }
+  </script>
+</body>
+
+</html>
